@@ -1,0 +1,11 @@
+{
+    "name": "cinema-app",
+    "type": "module",
+    "dependencies": {
+      "express": "^4.19.0"
+    },
+    "scripts": {
+      "start": "node server.js"
+    }
+  }
+  
