@@ -1,0 +1,20 @@
+{
+    "name": "cinema-cdn-edge",
+    "version": "1.0.0",
+    "description": "CDN Edge Server simulation for Level 1 cinema app",
+    "type": "module",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.19.0"
+    },
+    "keywords": [
+        "cdn",
+        "edge",
+        "cache",
+        "level1"
+    ],
+    "author": "",
+    "license": "MIT"
+}

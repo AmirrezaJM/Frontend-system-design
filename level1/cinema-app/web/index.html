@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cinema App – Now Showing</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <h1>Now Showing</h1>
+
+  <!-- Cache Stats Display -->
+  <div id="cache-stats"
+    style="background: #1f2833; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.875rem;">
+    <strong>🌐 CDN Edge Cache Status:</strong>
+    <span id="cache-info">Loading...</span>
+  </div>
+
+  <div id="movies" class="movies-grid"></div>
+
+  <!-- Config comes first -->
+  <script>
+    // 🌐 CDN Edge Configuration
+    // In Level 1, users access the app through the CDN edge server.
+    // The CDN caches static assets and proxies API requests.
+    window.API_BASE = "http://localhost:9000"; // CDN Edge Server
+  </script>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
