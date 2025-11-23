@@ -1,55 +1,95 @@
-# Level 0 – Plain Client–Server Cinema App
+# Frontend System Design - Scale Levels
+
+This repository demonstrates different levels of **frontend system design architecture**, showing how applications evolve from simple monolithic deployments to sophisticated, scalable systems.
+
+## Architecture Levels
+
+### [Level 0 – Plain Client–Server](level0/)
 
 ![Level 0 diagram](docs/level0.png)
 
-This repository showcases **Level 0 – Plain client–server** frontend system design. A single Node/Express server serves the HTML/CSS/JS, exposes JSON APIs, and talks to the (fake) database. Every user request terminates at this one box, which makes it the simplest possible deployment model.
+**Architecture**: A single Node/Express server serves HTML/CSS/JS, exposes JSON APIs, and talks to the database. Every user request terminates at this one box.
 
-## Level 0 in practice
+**Best for**:
+- MVPs and prototypes
+- Internal tools with limited users
+- Early-stage products validating ideas
+- Single-region deployments
 
-**What the server does**
+**Limitations**:
+- Single point of failure
+- Limited scalability
+- High latency for distant users
 
-- Serves the UI bundle (`public/`) with `HTML`, `CSS`, and `JS`.
-- Handles API requests such as `/api/movies`.
-- Talks to the data source (here, an in-memory array instead of a real database).
+[→ View Level 0 Details](level0/)
 
-**Pros**
+---
 
-- Simple to build and deploy.
-- Great for MVPs, internal tools, and early-stage products.
-- Easy to debug because everything lives in one place.
+### [Level 1 – Separated Frontend & Backend](level1/)
 
-**Cons**
+![Level 1 diagram](docs/level1.png)
 
-- Single point of failure.
-- Limited scalability—when traffic grows, everything slows down.
-- High latency for users far from your server location.
+**Architecture**: Static frontend (HTML/CSS/JS) served from a CDN or static host, while the API runs on a separate backend server. CORS-enabled communication between services.
 
-If your users are in one region and traffic is still low, Level 0 is fine. The problem appears when your app gets slower as soon as traffic or geography grows.
+**Best for**:
+- Global user base
+- Apps needing independent frontend/backend scaling
+- Teams wanting separate deployment pipelines
+- Improved static asset delivery via CDN
 
-## Project overview
+**Benefits**:
+- Better performance with CDN edge caching
+- Independent scaling of frontend and backend
+- Reduced backend load
+- Faster global delivery
 
-- `server.js` – Express server that both serves static files and exposes `/api/movies` plus a fake booking endpoint. It doubles as the “backend” and “frontend host,” highlighting the tight coupling of Level 0 systems.
-- `public/` – Plain HTML, CSS, and a small `app.js` file that fetches data from the same origin.
-- No separate database layer—`movies` are stored in memory to emphasize how minimal the setup can be.
+**Added complexity**:
+- CORS configuration required
+- Two separate deployments
+- Environment-specific API URLs
 
-This combination illustrates how most products begin: fast to set up, but constrained once traffic or geography grows.
+[→ View Level 1 Details](level1/)
 
-## Running the cinema app locally
+---
+
+## Coming Soon
+
+- **Level 2**: Server-Side Rendering (SSR) with frameworks like Next.js
+- **Level 3**: Advanced caching with Redis and edge computing
+- **Level 4**: Microservices architecture with API gateways
+- **Level 5**: Distributed systems with event-driven architecture
+
+## Learning Path
+
+Start with **Level 0** to understand the basics, then progress through each level as your requirements grow:
+
+1. **Level 0** → Simple monolith for getting started
+2. **Level 1** → Add CDN when you have global users or need independent scaling
+3. **Level 2+** → Add SSR, state management, and advanced caching as complexity grows
+
+## Running the Examples
+
+Each level has its own directory with a complete cinema booking app example:
 
 ```bash
+# Level 0 - Single server
 cd level0/cinema-app
-npm install
-npm start
+npm install && npm start
+
+# Level 1 - Separated services (requires two terminals)
+# Terminal 1: API server
+cd level1/cinema-app/api
+npm install && npm start
+
+# Terminal 2: Frontend server
+cd level1/cinema-app/web
+npm install && npm start
 ```
 
-Then open `http://localhost:3000` to load the UI and exercise the API from the same origin.
+## Contributing
 
-## When to move beyond Level 0
+This is an educational resource. Feel free to suggest improvements or additional architecture levels!
 
-Stay at Level 0 for:
+## License
 
-- MVPs where feature velocity matters more than performance.
-- Internal tools with a captive audience in one region.
-- Early-stage products where the goal is to validate the idea quickly.
-
-Start planning the next architecture level (CDN, multi-tier, caching, etc.) once you notice latency complaints, CPU/memory limits, or the team needs to deploy frontend and backend independently.
+MIT
