@@ -5,8 +5,8 @@ const app = express();
 const PORT = process.env.PORT || 9000;
 
 // Configuration
-const ORIGIN_SERVER = process.env.ORIGIN_SERVER || "http://localhost:8080";
-const API_SERVER = process.env.API_SERVER || "http://localhost:3000";
+const ORIGIN_SERVER = process.env.ORIGIN_SERVER || "http://127.0.0.1:8080";
+const API_SERVER = process.env.API_SERVER || "http://127.0.0.1:3000";
 
 /**
  * 🌐 CDN Edge Server Simulation

@@ -1,0 +1,14 @@
+{
+    "name": "cinema-api",
+    "version": "1.0.0",
+    "description": "API Server for Level 1 Cinema App",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.18.2"
+    }
+}
